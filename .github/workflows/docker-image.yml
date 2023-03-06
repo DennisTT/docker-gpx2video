@@ -41,7 +41,7 @@ jobs:
             dennistt/gpx2video
             ghcr.io/${{ github.repository }}
           tags: |
-            type=schedule,pattern={{date 'YYYYMMDD-hhmmss' tz='America/Vancouver'}},prefix={{branch}}-{{sha}}-
+            type=sha,prefix={{branch}}-,suffix=-{{date 'YYYYMMDD-hhmmss' tz='America/Vancouver'}},priority=1000
             type=ref,event=branch
             type=raw,value=latest,enable={{is_default_branch}}
 
