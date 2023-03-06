@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ "main" ]
+  schedule:
+    - cron: "0 0 1 * *"
 
 jobs:
 
@@ -39,9 +41,9 @@ jobs:
             dennistt/gpx2video
             ghcr.io/${{ github.repository }}
           tags: |
+            type=schedule,pattern={{date 'YYYYMMDD-hhmmss' tz='America/Vancouver'}},prefix={{branch}}-{{sha}}-
             type=ref,event=branch
             type=raw,value=latest,enable={{is_default_branch}}
-            type=sha
 
       - name: Build and push
         uses: docker/build-push-action@v4
